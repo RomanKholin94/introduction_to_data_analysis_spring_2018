@@ -6,7 +6,7 @@ import numpy as np
 print '1.Создать \"шахматную доску\" на numpy'
 n = 5
 m = 5
-a = np.array([[(x + y + 1) % 2 for x in range(m)] for y in range(n)])
+a = np.reshape(np.arange(1, n * m + 1) % 2, [n, m])
 print a
 
 print "2.Создать случайный вектор и занулить три самых больших по модулю значения"
@@ -23,19 +23,24 @@ print a
 
 print "3.Диагональная матрица с квадратами натуральных чисел"
 n = 5
-a = np.diag([x * x for x in range(1, n + 1)])
+a = np.diag(np.arange(1, n + 1))
+a = a * a
 print a
 
 print "4.Змейка"
 n = 5
 m = 5
-a = np.array([[x * n + y + 1 for x in range(m)] for y in range(n)])
+a = np.arange(1, n * m + 1)
+a = np.reshape(a, [n, m])
+a = a.T
 print a
 
 print "5.Евклидово расстояние между вектором и всеми строчками матрицы"
 n = 5
 m = 5
-a = np.array([[x * n + y + 1 for x in range(m)] for y in range(n)])
+a = np.arange(1, n * m + 1)
+a = np.reshape(a, [n, m])
+a = a.T
 b = np.array(range(1, m + 1))
 print a
 print b
@@ -47,7 +52,9 @@ print np.sqrt(d)
 print "6.Косинусное расстояние между вектором и всеми строчками матрицы. Косинусное расстояние для векторов"
 n = 5
 m = 5
-a = np.array([[x * n + y + 1 for x in range(m)] for y in range(n)])
+a = np.arange(1, n * m + 1)
+a = np.reshape(a, [n, m])
+a = a.T
 b = np.array(range(1, m + 1))
 print a
 print b
