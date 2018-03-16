@@ -16,7 +16,13 @@ def group_by(data, group_col, value_col, agg_function):
         Output:
           - out: dict group_name -> value {'A': 5}
     """
+    data = sort(data, key=)
     out = {}
+    for (key, values) in groupby(data, lambda x: x[group_col]):
+        s = []
+        for v in values:
+            s.append(v[value_col])
+        out.update({key, agg_function(s)})
     return out
 
 
@@ -51,5 +57,8 @@ def count_ngrams(text, n):
           - ngrams: Counter, ngram-> number of times
                                      it was in text
         """
-    ngrams = Counter()
+    a = [text[0:n]]
+    for i in range(n, len(text)):
+        a.append(a[i:i+n])
+    ngrams = Counter(a)
     return ngrams
