@@ -63,4 +63,4 @@ def cosine_similarity(X, top_n=10, with_mean=True, with_std=True):
         X[i][Y[i]] = 0.0
     Y = np.sqrt(np.reshape(np.sum(X * X, axis=1), [n, 1]))
     Z = np.dot(Y, Y.T)
-    return np.sqrt(np.dot(X, X.T)) / Z
+    return np.dot(X, X.T) / Z
