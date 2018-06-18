@@ -115,7 +115,9 @@ def cosine_similarity(X, top_n=10, with_mean=True, with_std=True):
             std = np.sqrt(std / d)
             for j in range(M):
                 X[i, j] /= std
-    Y = np.argsort(np.argsort(X, axis=1)[:,0:M - top_n]
+    Y = np.zeros((N, M - top_n), dtype=np.int32)
+    for i in range(N):
+        Y[i] = np.argsort(X[i])[0:M - top_n]
     for i in range(N):
         X[i][Y[i]] = 0.0
     for i in range(N):
